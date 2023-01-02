@@ -1,0 +1,8 @@
+.vs/
+packages/
+sources/RevitTestLibrary.Demo.MSTest/obj/
+RevitTestLibrary.Demo.MSTestV3/bin/
+RevitTestLibrary.Demo.MSTestV3/obj/
+sources/RevitTestLibrary.Demo.MSTest/bin/
+sources/RevitTestLibrary.Demo.MSTestV3/bin/
+sources/RevitTestLibrary.Demo.MSTestV3/obj/
