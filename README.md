@@ -30,7 +30,7 @@ The first results are very promising, it may someday be ready to be used on prod
 
 [https://www.nuget.org/packages/RevitTestLibrary.MSTest](https://www.nuget.org/packages/RevitTestLibrary.MSTest)
 
-3) Change test method attribute to `[RevitTestMethod]` and add one input paramter of type `UIApplication`
+3) Change test method attribute to `[RevitTestMethod]` and add one input parameter of type `UIApplication`
 
 ```csharp
 using System;
@@ -60,5 +60,5 @@ namespace RevitTestLibrary.Demo.MSTestV3
 
 ## Current limitations
  - works only with : Revit 2023 and Visual Studio 2022
- - theoretically it can be used with any test framework, but right now only integration with MSTest v3 is available
- - it is slow and memory hungry
+ - theoretically, it can be used with any test framework, but right now only integration with MSTest v3 is available
+ - it is slow and memory-hungry
