@@ -1,5 +1,10 @@
 [![Nuget](https://img.shields.io/nuget/v/RevitTestLibrary?color=%23004880&label=RevitTestLibrary%20nugets)](https://www.nuget.org/packages?q=RevitTestLibrary)
 
+> **Warning**
+Since version v.0.1 the RTL switched to .net 8 (Revit 2025), any further development on .net framework 4.8 (Revit 2023, 2024) is not planned.
+
+
+
 # RevitTestLibrary (RTL)
 Proof of Concept that it is possible to run and debug unit tests in Visual Studio with remote execution inside Revit.
 
