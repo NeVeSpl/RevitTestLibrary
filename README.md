@@ -70,7 +70,7 @@ namespace RevitTestLibrary.Demo.MSTestV3
 ```
 
 ## Demo
-Demo project is available here: `sources/RevitTestLibrary.Demo.MSTestV3/RevitTestLibrary.Demo.MSTestV3.csproj` 
+[The Demo project is available here: sources/RevitTestLibrary.Demo.MSTestV3](sources/RevitTestLibrary.Demo.MSTestV3/)
 
 ## Current limitations
  - works only with : Revit 2025 and Visual Studio 2022
