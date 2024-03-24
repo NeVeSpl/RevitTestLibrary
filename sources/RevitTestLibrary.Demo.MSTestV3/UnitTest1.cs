@@ -1,10 +1,12 @@
 ﻿using System;
 using System.IO;
-using System.Reflection;
 using Autodesk.Revit.DB;
-using Autodesk.Revit.UI;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RevitTestLibrary.MSTest;
+using RevitTestLibrary;
+
+
+[assembly: RevitPath("D:\\Autodesk\\Revit Preview\\Revit Preview Release\\Revit.exe")]
+
 
 namespace RevitTestLibrary.Demo.MSTestV3
 {
@@ -17,7 +19,7 @@ namespace RevitTestLibrary.Demo.MSTestV3
             Console.WriteLine("This is a standard test");
         }
         [RevitTestMethod]
-        public void Revit_TestMethod_WriteLine(UIApplication uia)
+        public void Revit_TestMethod_WriteLine(RevitContext revitContext)
         {
             Console.WriteLine("This code is running inside Revit.");
         }
@@ -29,26 +31,26 @@ namespace RevitTestLibrary.Demo.MSTestV3
             Assert.Fail("This is a standard test");
         }
         [RevitTestMethod]
-        public void Revit_TestMethod_Fail(UIApplication uia)
+        public void Revit_TestMethod_Fail(RevitContext revitContext)
         {
             Assert.Fail("This code is running inside Revit.");
         }
 
 
         [RevitTestMethod]
-        public void Revit_CreateNewProjectDocument(UIApplication uia)
+        public void Revit_CreateNewProjectDocument(RevitContext revitContext)
         {
-            var document = uia.Application.NewProjectDocument(UnitSystem.Metric);
+            var document = revitContext.UIApplication.Application.NewProjectDocument(UnitSystem.Metric);
             Console.WriteLine(document.Title);
             document.Close(false);
         }
 
 
         [RevitTestMethod]
-        public void Revit_OpenProjectDocument(UIApplication uia)
+        public void Revit_OpenProjectDocument(RevitContext revitContext)
         {
-            var path = Path.Combine(GetTestDirectory(), @"..\..\assets\rst_basic_sample_project.rvt");
-            var document = uia.Application.OpenDocumentFile(path);
+            var path = Path.Combine(revitContext.TestAssemblyLocation, @"..\..\..\assets\rst_basic_sample_project.rvt");
+            var document = revitContext.UIApplication.Application.OpenDocumentFile(path);
 
             var collector = new FilteredElementCollector(document).WhereElementIsNotElementType().OfCategory(BuiltInCategory.OST_Walls);
             var count = collector.GetElementCount();
@@ -61,25 +63,16 @@ namespace RevitTestLibrary.Demo.MSTestV3
         [RevitTestMethod]
         [DataRow(BuiltInCategory.OST_Walls, 9)]
         [DataRow(BuiltInCategory.OST_Columns, 0)]
-        public void Revit_DataDrivenTest(UIApplication uia, BuiltInCategory inputCategory, int expectedCount)
+        public void Revit_DataDrivenTest(RevitContext revitContext, BuiltInCategory inputCategory, int expectedCount)
         {
-            var path = Path.Combine(GetTestDirectory(), @"..\..\assets\rst_basic_sample_project.rvt");
-            var document = uia.Application.OpenDocumentFile(path);
+            var path = Path.Combine(revitContext.TestAssemblyLocation, @"..\..\..\assets\rst_basic_sample_project.rvt");
+            var document = revitContext.UIApplication.Application.OpenDocumentFile(path);
 
             var collector = new FilteredElementCollector(document).WhereElementIsNotElementType().OfCategory(inputCategory);
             var count = collector.GetElementCount();
 
             Assert.AreEqual(expectedCount, count);
             document.Close(false);
-        }
-
-
-        private static string GetTestDirectory()
-        {
-            string codeBase = Assembly.GetExecutingAssembly().CodeBase;
-            UriBuilder uri = new UriBuilder(codeBase);
-            string path = Uri.UnescapeDataString(uri.Path);
-            return Path.GetDirectoryName(path);
         }
     }
 }
