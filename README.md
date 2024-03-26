@@ -17,9 +17,16 @@ Proof of Concept that it is possible to run and debug unit tests in Visual Studi
 - [Revit.TestRunner](https://github.com/geberit/Revit.TestRunner)
 - [xUnitRevit](https://github.com/specklesystems/xUnitRevit)
 
-We have three established solutions for unit testing in Revit space, but none of them is integrated with the IDE. This makes them good only for detecting regressions, this is QA thing. We, developers, love and need unit tests for different reasons. There is no better way of writing a code, than running a small fragment of it in isolation without the need to start the whole (big (and slow)) application. We need as fast feedback loop as possible. Red, Green, Refactor, Repeat. 
+There are three established solutions for unit testing in Revit space, but none of them is integrated with the IDE. This makes them good only for detecting regressions, which makes QA happy. We, developers, love and need unit tests for different reasons. There is no better way of writing a code, than running a small fragment of it in isolation without the need to start the whole (big (and slow)) application. We need as fast feedback loop as possible. 
+<h4 align="center">
+Red, Green, Refactor, Repeat
+</h4>
 
 ## Features
+- does not keep dlls locked after conducting a unit test, which means Revit does not have to be closed in order to recompile dlls
+- you have full access to the stack trace with interactive links
+- you can mix unit tests that are run inside Revit context with tests that can be run without Revit context
+- unit tests are run in a special instance of Revit that does not load any addins.
 
 ## Getting started
 
@@ -39,6 +46,7 @@ We have three established solutions for unit testing in Revit space, but none of
 [https://www.nuget.org/packages/RevitTestLibrary.MSTest](https://www.nuget.org/packages/RevitTestLibrary.MSTest)
 
 3) Change test method attribute to `[RevitTestMethod]` and add one input parameter of type `RevitContext`
+4) Add the RevitPath attribute `[assembly: RevitPath("D:\\Autodesk\\Revit 2025\\Revit.exe")]`.
 
 ```csharp
 using System;
