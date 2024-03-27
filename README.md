@@ -17,16 +17,19 @@ Proof of Concept that it is possible to run and debug unit tests in Visual Studi
 - [Revit.TestRunner](https://github.com/geberit/Revit.TestRunner)
 - [xUnitRevit](https://github.com/specklesystems/xUnitRevit)
 
-There are three established solutions for unit testing in Revit space, but none of them is integrated with the IDE. This makes them good mostly for detecting regressions, which makes QA happy. We, developers, love and need unit tests for different reasons. There is no better way of writing a code, than running a small fragment of it in isolation without the need to start the whole (big (and slow)) application. We need as fast feedback loop as possible. 
+There are three established solutions for unit testing in Revit space, but none of them offers integration with the IDE. This makes them good mostly for detecting regressions, which makes QA happy. We, developers, love and need unit tests for different reasons. There is no better way of writing/understanding a code, than running a small fragment of it in isolation without the need to start the whole (big (and slow)) application once again (aka green arrow development). We need as fast feedback loop as possible. 
 <h4 align="center">
 Red, Green, Refactor, Repeat
 </h4>
 
 ## Features
-- does not keep dlls locked after conducting a unit test, which means Revit does not have to be closed down in order to recompile dlls
-- gives full access to the exception stack trace with interactive links
-- allows to mix unit tests that are run inside Revit context with tests that can be run without Revit context
-- unit tests are run in a special instance of Revit that does not load any addins.
+- dlls are not kept locked after conducting a unit test, which means Revit does not have to be closed down in order to recompile dlls
+- full access to the exception `Stack Trace` with interactive links to source code
+![stack-trace](https://raw.githubusercontent.com/NeVeSpl/RevitTestLibrary/main/documentation/stack-trace.gif)
+- full access to unit test `Standard Output`
+- unit tests that are run inside Revit context can be mixed with tests that can be run outside of Revit
+- unit tests are run in a special instance of Revit that does not load any addins
+- tests can be run from an IDE, CLI `dotnet test` or as part of a build pipline
 
 ## Getting started
 
@@ -81,5 +84,6 @@ namespace RevitTestLibrary.Demo.MSTestV3
 [The Demo project is available here: RevitTestLibrary.Demo.MSTestV3](https://github.com/NeVeSpl/RevitTestLibrary/tree/main/sources/RevitTestLibrary.Demo.MSTestV3)
 
 ## Current limitations
- - works only with : Revit 2025 and Visual Studio 2022
- - theoretically, it can be used with any test framework, but right now only integration with MSTest v3 is available
+ - works only with : Revit 2025 
+ - debugging is only available for: Visual Studio 2022
+ - theoretically, it can be used with any test framework, but right now only integration with MSTest v2  (>= 3.2.2) is available
