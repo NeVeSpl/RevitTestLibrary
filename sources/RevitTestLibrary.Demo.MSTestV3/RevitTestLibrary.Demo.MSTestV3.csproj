@@ -12,7 +12,7 @@
 	  <PackageReference Include="MSTest.TestAdapter" Version="3.3.0-preview.24164.4" />
 	  <PackageReference Include="MSTest.TestFramework" Version="3.3.0-preview.24164.4" />
 	 
-	  <PackageReference Include="RevitTestLibrary.MSTest" Version="0.2.0.2025" />
+	  <PackageReference Include="RevitTestLibrary.MSTest" Version="0.4.0.2025" />
 
   </ItemGroup>
   <ItemGroup>
